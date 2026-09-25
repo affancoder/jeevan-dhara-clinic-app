@@ -77,6 +77,21 @@ export default function RootLayout() {
           headerTitleAlign: "center",
         }}
       />
+
+      {/* Doctor Categories */}
+      <Stack.Screen
+        name="DoctorCategories"
+        options={{
+          headerShown: true,
+          headerTitle: "Doctor Categories",
+          headerTitleAlign : "center",
+          headerSearchBarOptions : {
+            headerIconColor: "#000",
+          }, 
+        }}
+      />
+
+      
     </Stack>
   );
 }

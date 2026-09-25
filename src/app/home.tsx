@@ -86,9 +86,7 @@ const Home = () => {
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
       >
-        {/* ================================
-            HEADER
-        ================================= */}
+        {/* ==== HEADER ==== */}
 
         <View style={styles.header}>
           <Image source={logo} style={styles.logo} />
@@ -107,9 +105,7 @@ const Home = () => {
           </Pressable>
         </View>
 
-        {/* ================================
-            SEARCH
-        ================================= */}
+        {/* === SEARCH == */}
 
         <View style={styles.searchBox}>
           <Ionicons name="search-outline" size={21} color="#173388" />
@@ -122,9 +118,7 @@ const Home = () => {
           />
         </View>
 
-        {/* ================================
-            SINGLE BANNER CARD
-        ================================= */}
+        {/* ===== SINGLE BANNER CARD === */}
 
         <View
           style={[
@@ -156,9 +150,8 @@ const Home = () => {
           </ScrollView>
         </View>
 
-        {/* ================================
-            BANNER DOTS
-        ================================= */}
+        {/* ===
+            BANNER DOTS ==== */}
 
         <View style={styles.dotsContainer}>
           {banners.map((_, index) => (
@@ -169,9 +162,7 @@ const Home = () => {
           ))}
         </View>
 
-        {/* ================================
-            DOCTOR CATEGORIES
-        ================================= */}
+        {/* ==== DOCTOR CATEGORIES === */}
 
         <View style={styles.categoryGrid}>
           {/* Cardiology */}
@@ -286,7 +277,7 @@ const Home = () => {
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>Upcoming Appointments</Text>
 
-          <Pressable onPress={() => console.log("View All")}>
+          <Pressable onPress={() => router.push("/DoctorCategories")}>
             <Text style={styles.viewAll}>View All</Text>
           </Pressable>
         </View>
@@ -322,9 +313,7 @@ const Home = () => {
         <View style={styles.bottomContentSpace} />
       </ScrollView>
 
-      {/* =================================
-    FIXED BOTTOM NAVIGATION
-================================= */}
+      {/* === FIXED BOTTOM NAVIGATION ======= */}
 
       <View style={styles.bottomNav}>
         <Pressable style={styles.navItem} onPress={() => router.push("/home")}>
