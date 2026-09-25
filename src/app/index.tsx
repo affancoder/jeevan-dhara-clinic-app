@@ -1,6 +1,7 @@
 import { Text, View, Image, StyleSheet, Animated } from "react-native";
 import { router } from "expo-router";
 import { useEffect, useRef } from "react";
+import logo from "../../assets/images/logo.jpeg";
 
 const index = () => {
   // Animated value starts at 8
@@ -26,7 +27,7 @@ const index = () => {
   return (
     <View style={styles.container}>
       <Image
-        source={require("../../assets/logo/app_logo.jpeg")}
+        source={logo}
         style={styles.logo}
       />
 

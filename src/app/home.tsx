@@ -16,12 +16,12 @@ import { Ionicons } from "@expo/vector-icons";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "expo-router";
 
-import logo from "../../assets/logo/app_logo.jpeg";
-import banner1 from "../../assets/banner1.webp";
-import banner2 from "../../assets/banner2.webp";
-import banner3 from "../../assets/banner3.webp";
-import banner4 from "../../assets/banner4.webp";
-import doctor1 from "../../assets/doctor1.webp";
+import logo from "../../assets/images/logo.jpeg";
+import banner1 from "../../assets/images/banner1.webp";
+import banner2 from "../../assets/images/banner2.webp";
+import banner3 from "../../assets/images/banner3.webp";
+import banner4 from "../../assets/images/banner4.webp";
+import doctor1 from "../../assets/images/doctor1.webp";
 
 const Home = () => {
   const router = useRouter();
