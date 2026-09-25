@@ -7,7 +7,7 @@ import {
   FlatList,
   Pressable,
 } from "react-native";
-import { Stack, useLocalSearchParams } from "expo-router";
+import { router, Stack, useLocalSearchParams } from "expo-router";
 import { Star, CheckCircle } from "lucide-react-native";
 
 const doctors = [
@@ -19,8 +19,7 @@ const doctors = [
     rating: "4.8",
     reviews: "330 reviews",
     available: true,
-    image:
-      "https://randomuser.me/api/portraits/men/32.jpg",
+    image: "https://randomuser.me/api/portraits/men/32.jpg",
   },
   {
     id: "2",
@@ -30,8 +29,7 @@ const doctors = [
     rating: "4.6",
     reviews: "210 reviews",
     available: true,
-    image:
-      "https://randomuser.me/api/portraits/women/44.jpg",
+    image: "https://randomuser.me/api/portraits/women/44.jpg",
   },
   {
     id: "3",
@@ -41,8 +39,7 @@ const doctors = [
     rating: "4.7",
     reviews: "190 reviews",
     available: true,
-    image:
-      "https://randomuser.me/api/portraits/men/52.jpg",
+    image: "https://randomuser.me/api/portraits/men/52.jpg",
   },
   {
     id: "4",
@@ -52,8 +49,7 @@ const doctors = [
     rating: "4.8",
     reviews: "120 reviews",
     available: false,
-    image:
-      "https://randomuser.me/api/portraits/women/68.jpg",
+    image: "https://randomuser.me/api/portraits/women/68.jpg",
   },
 ];
 
@@ -64,6 +60,16 @@ export default function DoctorList() {
     typeof category === "string" && category.length > 0
       ? category
       : "Cardiology";
+
+  const handleDoctorPress = (doctorId: string) => {
+    router.push({
+      pathname: "/DoctorProfile",
+      params: {
+        doctorId,
+        category: categoryName,
+      },
+    });
+  };
 
   return (
     <>
@@ -96,14 +102,13 @@ export default function DoctorList() {
                 styles.doctorCard,
                 pressed && styles.pressed,
               ]}
+              onPress={() => handleDoctorPress(item.id)}
             >
-              {/* Doctor Image */}
               <Image
                 source={{ uri: item.image }}
                 style={styles.doctorImage}
               />
 
-              {/* Doctor Information */}
               <View style={styles.doctorInfo}>
                 <Text style={styles.doctorName}>
                   {item.name}
@@ -134,7 +139,6 @@ export default function DoctorList() {
                 </View>
               </View>
 
-              {/* Availability */}
               <View
                 style={[
                   styles.availableBadge,
@@ -182,10 +186,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#E7EBEF",
     marginBottom: 10,
-
     flexDirection: "row",
     alignItems: "center",
-
     paddingVertical: 9,
     paddingHorizontal: 9,
 
@@ -258,13 +260,10 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 8,
     bottom: 9,
-
     flexDirection: "row",
     alignItems: "center",
-
     backgroundColor: "#DDF7E8",
     borderRadius: 10,
-
     paddingHorizontal: 7,
     paddingVertical: 3,
   },

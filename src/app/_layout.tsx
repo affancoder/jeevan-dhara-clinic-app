@@ -84,14 +84,20 @@ export default function RootLayout() {
         options={{
           headerShown: true,
           headerTitle: "Doctor Categories",
-          headerTitleAlign : "center",
-          headerSearchBarOptions : {
+          headerTitleAlign: "center",
+          headerSearchBarOptions: {
             headerIconColor: "#000",
-          }, 
+          },
         }}
       />
-
-      
+      {/* DoctorProfile */}
+      <Stack.Screen
+        name="DoctorProfile"
+        options={{
+          headerShown: false,
+          headerTitle: "",
+        }}
+      />
     </Stack>
   );
 }

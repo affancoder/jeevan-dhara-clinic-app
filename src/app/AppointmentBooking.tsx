@@ -1,9 +1,9 @@
 import {Text } from "react-native";
 
-const appointments =() =>{
+const AppointmentBooking =() =>{
     return(
         <Text>Book Appointments</Text>
     )
 };
 
-export default appointments;
+export default AppointmentBooking;
