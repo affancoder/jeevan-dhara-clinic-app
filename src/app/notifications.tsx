@@ -354,13 +354,13 @@ export default function Notifications() {
           headerShown: true,
           headerTitle: "Notifications",
           headerTitleAlign: "center",
-          headerTintColor: "#183B6B",
+          headerTintColor: "#000",
 
           /* Remove native bottom line/shadow */
           headerShadowVisible: false,
 
           /* Hide native back button */
-          headerBackVisible: false,
+          headerBackVisible: true,
         }}
       />
 
