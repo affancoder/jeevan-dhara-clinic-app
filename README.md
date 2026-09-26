@@ -1,56 +1,176 @@
-# Welcome to your Expo app 👋
+# Jeevan Dhara Clinic 🏥
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A modern mobile healthcare application built with **React Native and Expo** for discovering doctors, viewing doctor profiles, managing appointments, notifications, and patient information.
 
-## Get started
+This is my **first mobile application built independently using React Native + Expo**.
 
-1. Install dependencies
+---
 
-   ```bash
-   npm install
-   ```
+## 👨‍💻 Developer
 
-2. Start the app
+**MD AFFAN ASGHAR**  
+B.Tech (CSE) | Full-Stack Web Developer
 
-   ```bash
-   npx expo start
-   ```
+I designed and developed this application from scratch while learning and applying React Native, Expo, Expo Router, TypeScript, and mobile UI development.
 
-In the output, you'll find options to open the app in a
+---
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 📱 About the Application
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+**Jeevan Dhara Clinic** is a doctor appointment booking application designed to provide patients with a simple way to:
 
-## Get a fresh project
+- Create an account
+- Log in securely
+- Find doctors
+- Browse doctor categories
+- View doctor profiles
+- Check doctor experience and ratings
+- View consultation fees
+- Check doctor availability
+- Book appointments
+- Manage appointments
+- Receive notifications
+- Submit feedback and ratings
+- Manage their profile
 
-When you're ready, run:
+The application is currently being developed with a **backend-ready architecture**, so static UI data can later be replaced with data received from the backend API and database.
 
-```bash
-npm run reset-project
-```
+---
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## ✨ Main Features
 
-### Other setup steps
+### 🔐 Authentication
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+- Splash screen
+- User registration
+- Login
+- Forgot password
+- OTP login flow
+- Mobile number / email support
 
-## Learn more
+### 🏥 Doctor Discovery
 
-To learn more about developing your project with Expo, look at the following resources:
+- Doctor categories
+- Cardiology
+- Dermatology
+- Pediatrics
+- Gynecology
+- Orthopedics
+- ENT
+- Neurology
+- General Physician
+- Doctor search
+- Doctor availability
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### 👨‍⚕️ Doctor Profiles
 
-## Join the community
+Each doctor profile can display:
 
-Join our community of developers creating universal apps.
+- Doctor image
+- Name
+- Specialization
+- Experience
+- Rating
+- Reviews
+- Consultation fee
+- Languages
+- About doctor
+- Clinic location
+- Availability status
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+The doctor profile is structured so these values can later be loaded directly from the backend. :contentReference[oaicite:0]{index=0}
+
+### 📅 Appointment System
+
+- Select doctor
+- Select appointment date
+- Select available time slot
+- Confirm appointment
+- Appointment confirmation
+- View upcoming appointments
+- Manage appointment status
+
+### 🔔 Notifications
+
+- Appointment confirmation
+- Appointment reminders
+- Appointment completion
+- Feedback notifications
+- Clinic updates
+- Mark notification as read
+- Mark all notifications as read
+- Delete notifications
+
+### ⭐ Ratings & Feedback
+
+- Rate doctors
+- Submit feedback
+- View previous feedback
+
+### 👤 Patient Profile
+
+- Personal information
+- Change password
+- My appointments
+- My feedback
+- Support & help
+- Logout
+
+---
+
+## 🛠️ Technology Stack
+
+### Mobile Application
+
+- React Native
+- Expo
+- Expo Router
+- TypeScript
+- JavaScript
+- React
+
+### UI & Icons
+
+- React Native StyleSheet
+- Lucide React Native
+
+### Navigation
+
+- Expo Router
+- File-based routing
+
+### Backend
+
+Backend integration is planned so application data can eventually be retrieved from a database instead of hardcoded mock data.
+
+---
+
+## 📂 Project Structure
+
+```text
+my-app/
+│
+├── src/
+│   └── app/
+│       ├── index.tsx
+│       ├── Login.tsx
+│       ├── Registration.tsx
+│       ├── ForgotPassword.tsx
+│       ├── Home.tsx
+│       ├── DoctorCategories.tsx
+│       ├── DoctorList.tsx
+│       ├── DoctorProfile.tsx
+│       ├── AppointmentBooking.tsx
+│       ├── AppointmentConfirmed.tsx
+│       ├── MyAppointments.tsx
+│       ├── RatingFeedback.tsx
+│       ├── Notifications.tsx
+│       └── Profile.tsx
+│
+├── assets/
+│   └── images/
+│
+├── package.json
+├── app.json
+├── eas.json
+└── README.md
