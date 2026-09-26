@@ -33,7 +33,7 @@ const forget = () =>{
             </View>
 
             <View style={styles.resetBtn}>
-                <Text style={{color : "#fff"}}>Send Reset Link</Text>
+                <Text style={{color : "#fff" , fontSize: 17}}>Send Reset Link</Text>
             </View>
 
             <View>
@@ -52,11 +52,11 @@ const styles = StyleSheet.create({
     },
     topIcon:{
         alignItems : "center",
-        marginTop: 60,
+        marginTop: 40,
     },
     circle:{
-        height: 100,
-        width : 100,
+        height: 110,
+        width : 110,
         backgroundColor : "#E5F0FE",
         justifyContent : "center",
         alignItems : "center",
@@ -118,5 +118,6 @@ const styles = StyleSheet.create({
         textAlign : "center",
         color :"#1F48C4",
         fontWeight : "600",
+        fontSize : 18,
     }
 });

@@ -100,7 +100,7 @@ const login = () => {
 
       <View style={styles.signupRow}>
         <Text style={styles.signupText}>Don't have an account? </Text>
-        <Link href="/sign" style={{color : "#172F79", fontWeight : "bold"}}>Sign Up</Link>
+        <Link href="/sign" style={{color : "#172F79", fontWeight : "700", fontSize:18}}>Sign Up</Link>
       </View>
 
     </View>
@@ -118,7 +118,6 @@ const styles = StyleSheet.create({
     fontSize: 35,
     color: "#1F48C4",
     textAlign: "center",
-    marginTop: 50,
     fontWeight: "600",
   },
   subtitile: {
@@ -256,8 +255,8 @@ const styles = StyleSheet.create({
   },
 
   signupText:{
-    fontSize: 15,
-    color : "#172F79",
+    fontSize: 18,
+    // color : "#172F79",
   },
   passwordInput: {
   flexDirection: "row",

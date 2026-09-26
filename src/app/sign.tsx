@@ -89,7 +89,7 @@ const sign = () => {
         </View>
 
         <View style={styles.loginText}>
-          <Text style={{color : "#172F79"}}>Already have an account? <Link href="/login" style={styles.bottomText}>Login</Link></Text>
+          <Text style={{color : "#000" , fontSize:18}}>Already have an account? <Link href="/login" style={styles.bottomText}>Login</Link></Text>
         </View>
 
       </View>
@@ -110,7 +110,6 @@ const styles = StyleSheet.create({
   },
    title: {
     fontSize: 35,
-    marginTop: 35,
     color: "#1F48C4",
     fontWeight: "semibold",
     textAlign: "center",
@@ -168,5 +167,6 @@ const styles = StyleSheet.create({
   },
   bottomText:{
     fontWeight : "bold",
+    color : "#1F48C4",
   }
 });
