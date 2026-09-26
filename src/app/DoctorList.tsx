@@ -79,6 +79,7 @@ export default function DoctorList() {
           headerTitle: `${categoryName} Doctors`,
           headerTitleAlign: "center",
           headerTintColor: "#000",
+          headerShadowVisible: false,
 
           headerSearchBarOptions: {
             placeholder: "Search doctors...",

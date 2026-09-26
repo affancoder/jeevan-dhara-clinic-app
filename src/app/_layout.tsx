@@ -18,6 +18,7 @@ export default function RootLayout() {
           headerShown: true,
           headerTitle: "",
           headerBackTitle: "",
+          headerShadowVisible: false,
         }}
       />
 
@@ -28,6 +29,7 @@ export default function RootLayout() {
           headerShown: true,
           headerTitle: "",
           headerBackTitle: "",
+          headerShadowVisible: false,
         }}
       />
 
@@ -38,6 +40,7 @@ export default function RootLayout() {
           headerShown: true,
           headerTitle: "",
           headerBackTitle: "",
+          headerShadowVisible: false,
         }}
       />
 
@@ -45,16 +48,19 @@ export default function RootLayout() {
       <Stack.Screen
         name="home"
         options={{
-          headerShown: false,
+          headerShown: true,
+          headerBackVisible : false,
+          headerShadowVisible: false,
+          headerTitle:"",
         }}
       />
 
       {/* appointments */}
       <Stack.Screen
-        name="appointments"
+        name="MyAppointments"
         options={{
           headerShown: true,
-          headerTitle: "Book Appointments",
+          headerTitle: "Booked Appointments",
           headerTitleAlign: "center",
         }}
       />
@@ -85,6 +91,7 @@ export default function RootLayout() {
           headerShown: true,
           headerTitle: "Doctor Categories",
           headerTitleAlign: "center",
+          headerShadowVisible: false,
           headerSearchBarOptions: {
             headerIconColor: "#000",
           },

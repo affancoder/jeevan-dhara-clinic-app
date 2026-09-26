@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -16,7 +16,26 @@ import {
   Languages,
   Star,
   MapPin,
+  Phone,
+  Navigation,
 } from "lucide-react-native";
+
+/*
+|--------------------------------------------------------------------------
+| TEMPORARY DOCTOR DATA
+|--------------------------------------------------------------------------
+| This is mock data for now.
+|
+| Later:
+| - doctors can come from your backend/database
+| - reviews can come from your backend
+| - location can come from your backend
+| - availability can come from your backend
+| - appointment slots can come from your backend
+|
+| The UI structure does not need to be rebuilt.
+|--------------------------------------------------------------------------
+*/
 
 const doctors = [
   {
@@ -29,10 +48,48 @@ const doctors = [
     consultationFee: "₹600",
     languages: "English, Hindi",
     available: true,
+
     image: "https://randomuser.me/api/portraits/men/32.jpg",
+
     about:
       "Dr. Rajesh Mehta is a highly experienced cardiologist with over 15 years of experience in diagnosing and treating heart-related conditions. He is dedicated to providing compassionate and personalized care.",
+
+    reviewsData: [
+      {
+        id: "r1",
+        patientName: "Rahul Sharma",
+        rating: 5,
+        date: "15 Aug 2026",
+        comment:
+          "Very professional and experienced doctor. He explained everything clearly.",
+      },
+      {
+        id: "r2",
+        patientName: "Ananya Das",
+        rating: 5,
+        date: "02 Aug 2026",
+        comment:
+          "Very good experience. The doctor was patient and explained the treatment properly.",
+      },
+      {
+        id: "r3",
+        patientName: "Sourav Roy",
+        rating: 4,
+        date: "20 Jul 2026",
+        comment:
+          "Good doctor and very helpful staff.",
+      },
+    ],
+
+    location: {
+      clinicName: "Jeevan Dhara Clinic",
+      address: "Main Clinic, Kolkata, West Bengal",
+      area: "Kolkata",
+      timing: "Mon - Sat · 9:00 AM - 6:00 PM",
+      phone: "+91 98765 43210",
+    },
   },
+
   {
     id: "2",
     name: "Dr. Priya Sharma",
@@ -43,10 +100,48 @@ const doctors = [
     consultationFee: "₹600",
     languages: "English, Hindi",
     available: true,
+
     image: "https://randomuser.me/api/portraits/women/44.jpg",
+
     about:
       "Dr. Priya Sharma is a highly experienced cardiologist with over 12 years of experience in diagnosing and treating cardiovascular conditions. She is dedicated to providing compassionate and personalized care.",
+
+    reviewsData: [
+      {
+        id: "r1",
+        patientName: "Arjun Singh",
+        rating: 5,
+        date: "12 Aug 2026",
+        comment:
+          "Dr. Priya was very polite and explained the treatment in a simple way.",
+      },
+      {
+        id: "r2",
+        patientName: "Sneha Roy",
+        rating: 4,
+        date: "28 Jul 2026",
+        comment:
+          "Good consultation experience. The clinic staff was also helpful.",
+      },
+      {
+        id: "r3",
+        patientName: "Amit Das",
+        rating: 5,
+        date: "10 Jul 2026",
+        comment:
+          "Very satisfied with the consultation.",
+      },
+    ],
+
+    location: {
+      clinicName: "Jeevan Dhara Clinic",
+      address: "Main Clinic, Kolkata, West Bengal",
+      area: "Kolkata",
+      timing: "Mon - Sat · 10:00 AM - 6:00 PM",
+      phone: "+91 98765 43210",
+    },
   },
+
   {
     id: "3",
     name: "Dr. Amit Verma",
@@ -57,10 +152,48 @@ const doctors = [
     consultationFee: "₹700",
     languages: "English, Hindi",
     available: true,
+
     image: "https://randomuser.me/api/portraits/men/52.jpg",
+
     about:
       "Dr. Amit Verma is an experienced interventional cardiologist specializing in advanced cardiovascular procedures and patient-focused cardiac care.",
+
+    reviewsData: [
+      {
+        id: "r1",
+        patientName: "Vikash Kumar",
+        rating: 5,
+        date: "18 Aug 2026",
+        comment:
+          "Excellent doctor with great experience. Very professional consultation.",
+      },
+      {
+        id: "r2",
+        patientName: "Rohit Sen",
+        rating: 4,
+        date: "05 Aug 2026",
+        comment:
+          "The doctor explained the procedure and treatment options clearly.",
+      },
+      {
+        id: "r3",
+        patientName: "Puja Ghosh",
+        rating: 5,
+        date: "21 Jul 2026",
+        comment:
+          "Very good experience with the doctor.",
+      },
+    ],
+
+    location: {
+      clinicName: "Jeevan Dhara Clinic",
+      address: "Main Clinic, Kolkata, West Bengal",
+      area: "Kolkata",
+      timing: "Mon - Sat · 9:00 AM - 5:00 PM",
+      phone: "+91 98765 43210",
+    },
   },
+
   {
     id: "4",
     name: "Dr. Neha Kapoor",
@@ -71,18 +204,65 @@ const doctors = [
     consultationFee: "₹600",
     languages: "English, Hindi",
     available: false,
+
     image: "https://randomuser.me/api/portraits/women/68.jpg",
+
     about:
       "Dr. Neha Kapoor specializes in pediatric cardiology and provides comprehensive cardiac care for children and young patients.",
+
+    reviewsData: [
+      {
+        id: "r1",
+        patientName: "Rina Sharma",
+        rating: 5,
+        date: "14 Aug 2026",
+        comment:
+          "Very caring doctor. She was very patient with my child.",
+      },
+      {
+        id: "r2",
+        patientName: "Manish Gupta",
+        rating: 5,
+        date: "01 Aug 2026",
+        comment:
+          "Excellent pediatric consultation experience.",
+      },
+      {
+        id: "r3",
+        patientName: "Kavita Das",
+        rating: 4,
+        date: "19 Jul 2026",
+        comment:
+          "Good doctor and friendly staff.",
+      },
+    ],
+
+    location: {
+      clinicName: "Jeevan Dhara Clinic",
+      address: "Main Clinic, Kolkata, West Bengal",
+      area: "Kolkata",
+      timing: "Mon - Sat · 11:00 AM - 5:00 PM",
+      phone: "+91 98765 43210",
+    },
   },
 ];
 
 export default function DoctorProfile() {
   const { doctorId } = useLocalSearchParams();
 
+  const [activeTab, setActiveTab] = useState<
+    "About" | "Reviews" | "Location"
+  >("About");
+
   const doctor = doctors.find(
     (item) => item.id === doctorId
   );
+
+  /*
+  |--------------------------------------------------------------------------
+  | Doctor Not Found
+  |--------------------------------------------------------------------------
+  */
 
   if (!doctor) {
     return (
@@ -103,6 +283,12 @@ export default function DoctorProfile() {
     );
   }
 
+  /*
+  |--------------------------------------------------------------------------
+  | Main Screen
+  |--------------------------------------------------------------------------
+  */
+
   return (
     <>
       <Stack.Screen
@@ -111,12 +297,14 @@ export default function DoctorProfile() {
           headerTitle: "",
           headerTitleAlign: "center",
           headerTintColor: "#1E5AA8",
+          headerShadowVisible: false,
 
           headerRight: () => (
             <Pressable
               style={styles.headerHeart}
               onPress={() => {
-                // Later: save/remove doctor from favourites
+                // Later:
+                // save/remove doctor from favourites
               }}
             >
               <Heart
@@ -134,7 +322,10 @@ export default function DoctorProfile() {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollContent}
         >
-          {/* Doctor Header */}
+          {/* ============================================================
+              DOCTOR HEADER
+          ============================================================ */}
+
           <View style={styles.profileHeader}>
             <Image
               source={{ uri: doctor.image }}
@@ -149,6 +340,7 @@ export default function DoctorProfile() {
               {doctor.specialty}
             </Text>
 
+            {/* Rating */}
             <View style={styles.ratingRow}>
               <Star
                 size={15}
@@ -165,6 +357,7 @@ export default function DoctorProfile() {
               </Text>
             </View>
 
+            {/* Availability */}
             <View
               style={[
                 styles.availableBadge,
@@ -194,148 +387,375 @@ export default function DoctorProfile() {
             </View>
           </View>
 
-          {/* Tabs */}
+          {/* ============================================================
+              TABS
+          ============================================================ */}
+
           <View style={styles.tabs}>
-            <View style={[styles.tab, styles.activeTab]}>
-              <Text style={styles.activeTabText}>
-                About
-              </Text>
-            </View>
-
-            <View style={styles.tab}>
-              <Text style={styles.tabText}>
-                Reviews
-              </Text>
-            </View>
-
-            <View style={styles.tab}>
-              <Text style={styles.tabText}>
-                Location
-              </Text>
-            </View>
+            {(
+              ["About", "Reviews", "Location"] as const
+            ).map((tab) => (
+              <Pressable
+                key={tab}
+                style={[
+                  styles.tab,
+                  activeTab === tab &&
+                    styles.activeTab,
+                ]}
+                onPress={() => setActiveTab(tab)}
+              >
+                <Text
+                  style={
+                    activeTab === tab
+                      ? styles.activeTabText
+                      : styles.tabText
+                  }
+                >
+                  {tab}
+                </Text>
+              </Pressable>
+            ))}
           </View>
 
-          {/* About */}
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>
-              About Doctor
-            </Text>
+          {/* ============================================================
+              ABOUT TAB
+          ============================================================ */}
 
-            <Text style={styles.aboutText}>
-              {doctor.about}
-            </Text>
-          </View>
+          {activeTab === "About" && (
+            <>
+              <View style={styles.section}>
+                <Text style={styles.sectionTitle}>
+                  About Doctor
+                </Text>
 
-          {/* Doctor Information */}
-          <View style={styles.infoGrid}>
-            <View style={styles.infoCard}>
-              <View style={styles.infoIcon}>
-                <UserRound
-                  size={18}
+                <Text style={styles.aboutText}>
+                  {doctor.about}
+                </Text>
+              </View>
+
+              {/* Doctor Information */}
+              <View style={styles.infoGrid}>
+                {/* Specialization */}
+                <View style={styles.infoCard}>
+                  <View style={styles.infoIcon}>
+                    <UserRound
+                      size={18}
+                      color="#2563EB"
+                    />
+                  </View>
+
+                  <View style={styles.infoContent}>
+                    <Text style={styles.infoLabel}>
+                      Specialization
+                    </Text>
+
+                    <Text style={styles.infoValue}>
+                      {doctor.specialty}
+                    </Text>
+                  </View>
+                </View>
+
+                {/* Experience */}
+                <View style={styles.infoCard}>
+                  <View style={styles.infoIcon}>
+                    <Clock3
+                      size={18}
+                      color="#2563EB"
+                    />
+                  </View>
+
+                  <View style={styles.infoContent}>
+                    <Text style={styles.infoLabel}>
+                      Experience
+                    </Text>
+
+                    <Text style={styles.infoValue}>
+                      {doctor.experience}
+                    </Text>
+                  </View>
+                </View>
+
+                {/* Consultation Fee */}
+                <View style={styles.infoCard}>
+                  <View style={styles.infoIcon}>
+                    <Wallet
+                      size={18}
+                      color="#2563EB"
+                    />
+                  </View>
+
+                  <View style={styles.infoContent}>
+                    <Text style={styles.infoLabel}>
+                      Consultation Fee
+                    </Text>
+
+                    <Text style={styles.infoValue}>
+                      {doctor.consultationFee}
+                    </Text>
+                  </View>
+                </View>
+
+                {/* Languages */}
+                <View style={styles.infoCard}>
+                  <View style={styles.infoIcon}>
+                    <Languages
+                      size={18}
+                      color="#2563EB"
+                    />
+                  </View>
+
+                  <View style={styles.infoContent}>
+                    <Text style={styles.infoLabel}>
+                      Languages
+                    </Text>
+
+                    <Text style={styles.infoValue}>
+                      {doctor.languages}
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </>
+          )}
+
+          {/* ============================================================
+              REVIEWS TAB
+          ============================================================ */}
+
+          {activeTab === "Reviews" && (
+            <View style={styles.tabContent}>
+              {/* Rating Summary */}
+              <View style={styles.reviewSummary}>
+                <Text style={styles.bigRating}>
+                  {doctor.rating}
+                </Text>
+
+                <View>
+                  <View style={styles.reviewStars}>
+                    {[1, 2, 3, 4, 5].map(
+                      (star) => (
+                        <Star
+                          key={star}
+                          size={17}
+                          color="#F4B400"
+                          fill={
+                            star <=
+                            Math.round(
+                              Number(
+                                doctor.rating
+                              )
+                            )
+                              ? "#F4B400"
+                              : "transparent"
+                          }
+                        />
+                      )
+                    )}
+                  </View>
+
+                  <Text
+                    style={styles.totalReviews}
+                  >
+                    {doctor.reviews}
+                  </Text>
+                </View>
+              </View>
+
+              {/* Individual Reviews */}
+              {doctor.reviewsData.map(
+                (review) => (
+                  <View
+                    key={review.id}
+                    style={styles.reviewCard}
+                  >
+                    <View
+                      style={styles.reviewHeader}
+                    >
+                      <Text
+                        style={styles.patientName}
+                      >
+                        {review.patientName}
+                      </Text>
+
+                      <Text
+                        style={styles.reviewDate}
+                      >
+                        {review.date}
+                      </Text>
+                    </View>
+
+                    {/* Review Stars */}
+                    <View
+                      style={styles.reviewStars}
+                    >
+                      {[1, 2, 3, 4, 5].map(
+                        (star) => (
+                          <Star
+                            key={star}
+                            size={13}
+                            color="#F4B400"
+                            fill={
+                              star <=
+                              review.rating
+                                ? "#F4B400"
+                                : "transparent"
+                            }
+                          />
+                        )
+                      )}
+                    </View>
+
+                    <Text
+                      style={styles.reviewComment}
+                    >
+                      {review.comment}
+                    </Text>
+                  </View>
+                )
+              )}
+            </View>
+          )}
+
+          {/* ============================================================
+              LOCATION TAB
+          ============================================================ */}
+
+          {activeTab === "Location" && (
+            <View style={styles.tabContent}>
+              <View style={styles.locationCard}>
+                <View style={styles.locationIcon}>
+                  <MapPin
+                    size={21}
+                    color="#2563EB"
+                  />
+                </View>
+
+                <View
+                  style={styles.locationContent}
+                >
+                  <Text
+                    style={styles.locationTitle}
+                  >
+                    {doctor.location.clinicName}
+                  </Text>
+
+                  <Text
+                    style={styles.locationAddress}
+                  >
+                    {doctor.location.address}
+                  </Text>
+
+                  <Text
+                    style={styles.locationTiming}
+                  >
+                    {doctor.location.timing}
+                  </Text>
+
+                  <View
+                    style={styles.phoneRow}
+                  >
+                    <Phone
+                      size={13}
+                      color="#2563EB"
+                    />
+
+                    <Text
+                      style={styles.locationPhone}
+                    >
+                      {doctor.location.phone}
+                    </Text>
+                  </View>
+                </View>
+              </View>
+
+              {/* Area */}
+              <View style={styles.locationDetail}>
+                <MapPin
+                  size={17}
                   color="#2563EB"
                 />
+
+                <View>
+                  <Text
+                    style={styles.locationDetailLabel}
+                  >
+                    Clinic Location
+                  </Text>
+
+                  <Text
+                    style={styles.locationDetailValue}
+                  >
+                    {doctor.location.area}
+                  </Text>
+                </View>
               </View>
 
-              <View style={styles.infoContent}>
-                <Text style={styles.infoLabel}>
-                  Specialization
-                </Text>
-
-                <Text style={styles.infoValue}>
-                  {doctor.specialty}
-                </Text>
-              </View>
-            </View>
-
-            <View style={styles.infoCard}>
-              <View style={styles.infoIcon}>
+              {/* Timing */}
+              <View style={styles.locationDetail}>
                 <Clock3
-                  size={18}
+                  size={17}
                   color="#2563EB"
                 />
+
+                <View>
+                  <Text
+                    style={styles.locationDetailLabel}
+                  >
+                    Consultation Hours
+                  </Text>
+
+                  <Text
+                    style={styles.locationDetailValue}
+                  >
+                    {doctor.location.timing}
+                  </Text>
+                </View>
               </View>
 
-              <View style={styles.infoContent}>
-                <Text style={styles.infoLabel}>
-                  Experience
-                </Text>
-
-                <Text style={styles.infoValue}>
-                  {doctor.experience}
-                </Text>
-              </View>
-            </View>
-
-            <View style={styles.infoCard}>
-              <View style={styles.infoIcon}>
-                <Wallet
-                  size={18}
-                  color="#2563EB"
+              {/* Directions */}
+              <Pressable
+                style={({ pressed }) => [
+                  styles.directionButton,
+                  pressed &&
+                    styles.directionButtonPressed,
+                ]}
+                onPress={() => {
+                  // Later:
+                  // Open Google Maps / Mapbox
+                }}
+              >
+                <Navigation
+                  size={17}
+                  color="#FFFFFF"
                 />
-              </View>
 
-              <View style={styles.infoContent}>
-                <Text style={styles.infoLabel}>
-                  Consultation Fee
+                <Text
+                  style={
+                    styles.directionButtonText
+                  }
+                >
+                  Get Directions
                 </Text>
-
-                <Text style={styles.infoValue}>
-                  {doctor.consultationFee}
-                </Text>
-              </View>
+              </Pressable>
             </View>
-
-            <View style={styles.infoCard}>
-              <View style={styles.infoIcon}>
-                <Languages
-                  size={18}
-                  color="#2563EB"
-                />
-              </View>
-
-              <View style={styles.infoContent}>
-                <Text style={styles.infoLabel}>
-                  Languages
-                </Text>
-
-                <Text style={styles.infoValue}>
-                  {doctor.languages}
-                </Text>
-              </View>
-            </View>
-          </View>
-
-          {/* Location Preview */}
-          <View style={styles.locationSection}>
-            <View style={styles.locationIcon}>
-              <MapPin
-                size={18}
-                color="#2563EB"
-              />
-            </View>
-
-            <View>
-              <Text style={styles.locationTitle}>
-                Jeevan Dhara Clinic
-              </Text>
-
-              <Text style={styles.locationText}>
-                Main Clinic · Kolkata
-              </Text>
-            </View>
-          </View>
+          )}
         </ScrollView>
 
-        {/* Bottom Button */}
+        {/* ==============================================================
+            BOTTOM BOOK APPOINTMENT BUTTON
+        ============================================================== */}
+
         <View style={styles.bottomContainer}>
           <Pressable
             style={({ pressed }) => [
               styles.bookButton,
-              pressed && styles.bookButtonPressed,
+              pressed &&
+                styles.bookButtonPressed,
             ]}
             onPress={() =>
               router.push({
-                pathname: "/AppointmentBooking",
+                pathname:
+                  "/AppointmentBooking",
                 params: {
                   doctorId: doctor.id,
                 },
@@ -352,6 +772,12 @@ export default function DoctorProfile() {
   );
 }
 
+/*
+|--------------------------------------------------------------------------
+| STYLES
+|--------------------------------------------------------------------------
+*/
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -361,6 +787,12 @@ const styles = StyleSheet.create({
   scrollContent: {
     paddingBottom: 105,
   },
+
+  /*
+  |--------------------------------------------------------------------------
+  | HEADER
+  |--------------------------------------------------------------------------
+  */
 
   profileHeader: {
     alignItems: "center",
@@ -443,6 +875,12 @@ const styles = StyleSheet.create({
     color: "#E53935",
   },
 
+  /*
+  |--------------------------------------------------------------------------
+  | TABS
+  |--------------------------------------------------------------------------
+  */
+
   tabs: {
     flexDirection: "row",
     marginTop: 20,
@@ -473,6 +911,17 @@ const styles = StyleSheet.create({
     color: "#7D8794",
   },
 
+  tabContent: {
+    paddingHorizontal: 15,
+    paddingTop: 17,
+  },
+
+  /*
+  |--------------------------------------------------------------------------
+  | ABOUT
+  |--------------------------------------------------------------------------
+  */
+
   section: {
     paddingHorizontal: 20,
     paddingTop: 17,
@@ -490,6 +939,12 @@ const styles = StyleSheet.create({
     lineHeight: 17,
     color: "#697586",
   },
+
+  /*
+  |--------------------------------------------------------------------------
+  | INFORMATION CARDS
+  |--------------------------------------------------------------------------
+  */
 
   infoGrid: {
     flexDirection: "row",
@@ -536,37 +991,182 @@ const styles = StyleSheet.create({
     color: "#30445F",
   },
 
-  locationSection: {
-    marginHorizontal: 15,
-    marginTop: 2,
-    padding: 12,
-    borderRadius: 10,
-    backgroundColor: "#F8FAFC",
+  /*
+  |--------------------------------------------------------------------------
+  | REVIEWS
+  |--------------------------------------------------------------------------
+  */
+
+  reviewSummary: {
     flexDirection: "row",
     alignItems: "center",
+    backgroundColor: "#F8FAFC",
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 12,
   },
 
-  locationIcon: {
-    width: 34,
-    height: 34,
-    borderRadius: 9,
-    backgroundColor: "#E8F1FF",
+  bigRating: {
+    fontSize: 32,
+    fontWeight: "700",
+    color: "#183B6B",
+    marginRight: 15,
+  },
+
+  reviewStars: {
+    flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
-    marginRight: 9,
+    gap: 2,
   },
 
-  locationTitle: {
+  totalReviews: {
     fontSize: 11,
+    color: "#7C8795",
+    marginTop: 4,
+  },
+
+  reviewCard: {
+    backgroundColor: "#FFFFFF",
+    borderWidth: 1,
+    borderColor: "#E7EBEF",
+    borderRadius: 11,
+    padding: 13,
+    marginBottom: 10,
+  },
+
+  reviewHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 6,
+  },
+
+  patientName: {
+    fontSize: 12,
     fontWeight: "700",
     color: "#30445F",
   },
 
-  locationText: {
-    fontSize: 10,
-    color: "#7C8795",
-    marginTop: 2,
+  reviewDate: {
+    fontSize: 9,
+    color: "#8993A0",
   },
+
+  reviewComment: {
+    fontSize: 11,
+    lineHeight: 17,
+    color: "#697586",
+    marginTop: 7,
+  },
+
+  /*
+  |--------------------------------------------------------------------------
+  | LOCATION
+  |--------------------------------------------------------------------------
+  */
+
+  locationCard: {
+    backgroundColor: "#F8FAFC",
+    borderRadius: 12,
+    padding: 15,
+    flexDirection: "row",
+  },
+
+  locationIcon: {
+    width: 40,
+    height: 40,
+    borderRadius: 10,
+    backgroundColor: "#E8F1FF",
+    alignItems: "center",
+    justifyContent: "center",
+    marginRight: 11,
+  },
+
+  locationContent: {
+    flex: 1,
+  },
+
+  locationTitle: {
+    fontSize: 13,
+    fontWeight: "700",
+    color: "#30445F",
+  },
+
+  locationAddress: {
+    fontSize: 11,
+    color: "#697586",
+    marginTop: 5,
+    lineHeight: 17,
+  },
+
+  locationTiming: {
+    fontSize: 10,
+    color: "#687789",
+    marginTop: 8,
+  },
+
+  phoneRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 6,
+  },
+
+  locationPhone: {
+    fontSize: 10,
+    color: "#2563EB",
+    fontWeight: "600",
+    marginLeft: 5,
+  },
+
+  locationDetail: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#F8FAFC",
+    borderRadius: 10,
+    padding: 13,
+    marginTop: 10,
+  },
+
+  locationDetailLabel: {
+    fontSize: 9,
+    color: "#8792A1",
+    marginBottom: 3,
+    marginLeft: 10,
+  },
+
+  locationDetailValue: {
+    fontSize: 11,
+    fontWeight: "600",
+    color: "#30445F",
+    marginLeft: 10,
+  },
+
+  directionButton: {
+    height: 45,
+    backgroundColor: "#12A66A",
+    borderRadius: 9,
+    marginTop: 12,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  directionButtonPressed: {
+    opacity: 0.85,
+  },
+
+  directionButtonText: {
+    color: "#FFFFFF",
+    fontSize: 13,
+    fontWeight: "700",
+    marginLeft: 6,
+  },
+
+  /*
+  |--------------------------------------------------------------------------
+  | BOTTOM BOOK BUTTON
+  |--------------------------------------------------------------------------
+  */
 
   bottomContainer: {
     position: "absolute",
@@ -599,10 +1199,22 @@ const styles = StyleSheet.create({
     fontWeight: "700",
   },
 
+  /*
+  |--------------------------------------------------------------------------
+  | HEADER FAVOURITE
+  |--------------------------------------------------------------------------
+  */
+
   headerHeart: {
     marginRight: 14,
     padding: 4,
   },
+
+  /*
+  |--------------------------------------------------------------------------
+  | ERROR
+  |--------------------------------------------------------------------------
+  */
 
   errorContainer: {
     flex: 1,

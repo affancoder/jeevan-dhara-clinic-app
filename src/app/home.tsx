@@ -1,6 +1,5 @@
 import {
   View,
-  Img,
   Text,
   StyleSheet,
   Image,
@@ -169,7 +168,7 @@ const Home = () => {
 
           <Pressable
             style={styles.categoryItem}
-            onPress={() => console.log("Cardiology")}
+            onPress={() => router.push("/DoctorCategories")}
           >
             <View style={styles.categoryIcon}>
               <Ionicons name="heart" size={25} color="#E53935" />
@@ -182,7 +181,7 @@ const Home = () => {
 
           <Pressable
             style={styles.categoryItem}
-            onPress={() => console.log("Dermatology")}
+            onPress={() => router.push("/DoctorCategories")}
           >
             <View style={styles.categoryIcon}>
               <Ionicons name="triangle" size={25} color="#E68A00" />
@@ -195,7 +194,7 @@ const Home = () => {
 
           <Pressable
             style={styles.categoryItem}
-            onPress={() => console.log("Pediatrics")}
+            onPress={() =>router.push("/DoctorCategories")}
           >
             <View style={styles.categoryIcon}>
               <Ionicons name="people" size={25} color="#087EA4" />
@@ -208,7 +207,7 @@ const Home = () => {
 
           <Pressable
             style={styles.categoryItem}
-            onPress={() => console.log("Gynaecology")}
+            onPress={() =>router.push("/DoctorCategories")}
           >
             <View style={styles.categoryIcon}>
               <Ionicons name="female" size={25} color="#D9A900" />
@@ -221,7 +220,7 @@ const Home = () => {
 
           <Pressable
             style={styles.categoryItem}
-            onPress={() => console.log("Orthopedics")}
+            onPress={() =>router.push("/DoctorCategories")}
           >
             <View style={styles.categoryIcon}>
               <Ionicons name="git-merge" size={25} color="#315DC7" />
@@ -234,7 +233,7 @@ const Home = () => {
 
           <Pressable
             style={styles.categoryItem}
-            onPress={() => console.log("ENT")}
+            onPress={() =>router.push("/DoctorCategories")}
           >
             <View style={styles.categoryIcon}>
               <Ionicons name="ear" size={25} color="#C82C8A" />
@@ -247,7 +246,7 @@ const Home = () => {
 
           <Pressable
             style={styles.categoryItem}
-            onPress={() => console.log("Neurology")}
+            onPress={() =>router.push("/DoctorCategories")}
           >
             <View style={styles.categoryIcon}>
               <Ionicons name="hardware-chip" size={25} color="#15945A" />
@@ -260,7 +259,7 @@ const Home = () => {
 
           <Pressable
             style={styles.categoryItem}
-            onPress={() => console.log("General Physician")}
+            onPress={() =>router.push("/DoctorCategories")}
           >
             <View style={styles.categoryIcon}>
               <Ionicons name="medkit" size={25} color="#1464D2" />
@@ -270,14 +269,12 @@ const Home = () => {
           </Pressable>
         </View>
 
-        {/* ================================
-            UPCOMING APPOINTMENTS
-        ================================= */}
+        {/* ====== UPCOMING APPOINTMENTS ==== */}
 
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>Upcoming Appointments</Text>
 
-          <Pressable onPress={() => router.push("/DoctorCategories")}>
+          <Pressable onPress={() => router.push("/MyAppointments")}>
             <Text style={styles.viewAll}>View All</Text>
           </Pressable>
         </View>
@@ -286,7 +283,7 @@ const Home = () => {
 
         <Pressable
           style={styles.appointmentCard}
-          onPress={() => console.log("Open Appointment")}
+          onPress={() =>router.push("/DoctorCategories")}
         >
           <Image source={doctor1} style={styles.doctorImage} />
 
@@ -324,7 +321,7 @@ const Home = () => {
 
         <Pressable
           style={styles.navItem}
-          onPress={() => router.push("/appointments")}
+          onPress={() => router.push("/MyAppointments")}
         >
           <Ionicons name="calendar-outline" size={23} color="#777" />
 
@@ -358,9 +355,7 @@ export default Home;
 /* === STYLES ===== */
 
 const styles = StyleSheet.create({
-  /* ================================
-     MAIN CONTAINER
-  ================================= */
+  /* ===  MAIN CONTAINER ==== */
 
   container: {
     flex: 1,
@@ -381,9 +376,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-
     paddingHorizontal: 16,
-    marginTop: 40,
   },
 
   clinicName: {
