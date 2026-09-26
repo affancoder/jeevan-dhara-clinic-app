@@ -100,7 +100,7 @@ const login = () => {
 
       <View style={styles.signupRow}>
         <Text style={styles.signupText}>Don't have an account? </Text>
-        <Link href="/sign" style={{color : "#172F79", fontWeight : "700", fontSize:18}}>Sign Up</Link>
+        <Link href="/sign" style={{color : "#172F79", fontWeight : "bold", fontSize:16}}>Sign Up</Link>
       </View>
 
     </View>
@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
 
   loginText: {
     color: "#fff",
-    fontSize: 18,
+    fontSize: 20,
   },
 
   dividerRow:{
@@ -245,7 +245,8 @@ const styles = StyleSheet.create({
   },
 
   otpText:{
-    fontWeight : "700",
+    // fontWeight : "700",
+    fontSize:16,
   },
 
   signupRow:{
@@ -255,7 +256,7 @@ const styles = StyleSheet.create({
   },
 
   signupText:{
-    fontSize: 18,
+    fontSize: 16,
     // color : "#172F79",
   },
   passwordInput: {
