@@ -1,4 +1,5 @@
 import { Stack } from "expo-router";
+import { View } from "react-native";
 
 export default function RootLayout() {
   return (
@@ -8,6 +9,7 @@ export default function RootLayout() {
         name="index"
         options={{
           headerShown: false,
+          headerShadowVisible: false,
         }}
       />
 
@@ -44,14 +46,21 @@ export default function RootLayout() {
         }}
       />
 
-      {/* Home */}
       <Stack.Screen
         name="home"
         options={{
           headerShown: true,
-          headerBackVisible : false,
+          headerBackVisible: false,
           headerShadowVisible: false,
-          headerTitle:"",
+          headerTitle: "",
+          header: () => (
+            <View
+              style={{
+                height: 40,
+                backgroundColor: "#FFFFFF",
+              }}
+            />
+          ),
         }}
       />
 

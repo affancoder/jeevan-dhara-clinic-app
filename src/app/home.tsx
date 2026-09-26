@@ -23,7 +23,6 @@ import banner4 from "../../assets/images/banner4.webp";
 import doctor1 from "../../assets/images/doctor1.webp";
 
 const Home = () => {
-
   
   const router = useRouter();
 
